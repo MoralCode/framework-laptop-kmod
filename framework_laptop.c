@@ -230,7 +230,7 @@ static struct attribute *framework_laptop_battery_attrs[] = {
 
 ATTRIBUTE_GROUPS(framework_laptop_battery);
 
-static int framework_laptop_battery_add(struct power_supply *battery, struct acpi_battery_hook *hook)
+static int framework_laptop_battery_add(struct power_supply *battery)
 {
 	// Framework EC only supports 1 battery
 	if (strcmp(battery->desc->name, "BAT1") != 0)
@@ -242,7 +242,7 @@ static int framework_laptop_battery_add(struct power_supply *battery, struct acp
 	return 0;
 }
 
-static int framework_laptop_battery_remove(struct power_supply *battery, struct acpi_battery_hook *hook)
+static int framework_laptop_battery_remove(struct power_supply *battery)
 {
 	device_remove_groups(&battery->dev, framework_laptop_battery_groups);
 	return 0;
